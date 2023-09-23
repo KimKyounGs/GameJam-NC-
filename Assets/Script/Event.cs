@@ -6,7 +6,7 @@ public class Event : MonoBehaviour
 {  
     public static Event instance;
     
-    public People people = new People();
+    public People NPC = new People();
     void Start()
     {   
         instance = this;
@@ -21,8 +21,12 @@ public class Event : MonoBehaviour
     {
         // 대화 나오게 하기.
         Debug.Log(other);
-
-        
+    
     }   
+
+    void StartEvent()
+    {
+        
+    }
 
 }
