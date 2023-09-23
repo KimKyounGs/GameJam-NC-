@@ -20,10 +20,10 @@ public class DialogueParser : MonoBehaviour
             Dialogue dialogue = new Dialogue(); // 대사 리스트 생성
             dialogue._ID = int.Parse(row[0]);
             dialogue._characterName = row[1];
-            if (row[3] != " ") {
+            if (row[3] != "") {
                 dialogue._fontSize = int.Parse(row[3]);
             }
-            if (row[4] != " " ) {
+            if (row[4] != "" ) {
                 dialogue._fontColor = int.Parse(row[4]);
             }
             dialogue._sprite = row[5];
@@ -55,7 +55,7 @@ public class DialogueParser : MonoBehaviour
             dialgoueList.Add(dialogue);
 
             // GameObject obj = GameObject.Find("DialgoueManager");
-
+            
         }
 
         

@@ -7,6 +7,9 @@ public class Event : MonoBehaviour
     public static Event instance;
     
     public People NPC = new People();
+
+    public int NPCID;
+
     void Start()
     {   
         instance = this;
@@ -17,16 +20,13 @@ public class Event : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D other) 
+    public void StartEvent()
     {
-        // 대화 나오게 하기.
-        Debug.Log(other);
-    
-    }   
+        Dialogue[] dialogues = DataBaseManager.instance.GetDialogues(NPCID);
+        DialogueManager.instance.ShowDialogue(dialogues);
+        Pear.instance.BeLifesaving();
 
-    void StartEvent()
-    {
-        
+        Destroy(gameObject);
     }
 
 }

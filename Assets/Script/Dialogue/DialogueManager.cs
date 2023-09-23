@@ -7,7 +7,7 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
 
-    [Header("텍스트 출력 딜레이")]
+    [Header("Text Print Delay")]
     [SerializeField] float textDelay;
 
     Dialogue[] dialogues;
@@ -20,7 +20,6 @@ public class DialogueManager : MonoBehaviour
     int contextCount = 0; // 대사 카운트.
 
     bool isDialogue;
-    bool isNext;
     
 
     void Start()
@@ -37,27 +36,24 @@ public class DialogueManager : MonoBehaviour
     {
         if (isDialogue) 
         {
-            if (isNext)
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                if(Input.GetKeyDown(KeyCode.Space))
+
+                if (dialogues != null)
                 {
-                    isNext = false;
-                    if (dialogues != null)
+                    if (++contextCount < dialogues[lineCount]._contexts.Length)
                     {
-                        if (++contextCount < dialogues[lineCount]._contexts.Length)
+                        StartCoroutine(TypeContext());
+                    }
+                    else
+                    {
+                        if(++lineCount < dialogues.Length)
                         {
                             StartCoroutine(TypeContext());
                         }
-                        else
+                        else 
                         {
-                            if(++lineCount < dialogues.Length)
-                            {
-                                StartCoroutine(TypeContext());
-                            }
-                            else 
-                            {
-                                EndDialogue();
-                            }
+                            EndDialogue();
                         }
                     }
                 }
@@ -71,6 +67,7 @@ public class DialogueManager : MonoBehaviour
         textDialogue.text = "";
         textName.text = "";
         dialogues = p_dialogues;
+        GameBase._bShipMove = false;
         StartCoroutine(TypeContext());
     }
 
@@ -80,7 +77,7 @@ public class DialogueManager : MonoBehaviour
         contextCount = 0;
         lineCount = 0;
         dialogues = null;
-        isNext = false;
+        GameBase._bShipMove = true;
         SettingUI(false);
     
     }
@@ -143,11 +140,14 @@ public class DialogueManager : MonoBehaviour
         }
     
 
-    void SettingUI(bool p_flag)
+    void SettingUI(bool pFlag)
     {
-        dialogueBox.SetActive(p_flag);
+        dialogueBox.SetActive(pFlag);
     
-        textName.text = dialogues[lineCount]._characterName;
+        if (pFlag)
+        {
+            textName.text = dialogues[lineCount]._characterName;
+        }
     }
 
 }

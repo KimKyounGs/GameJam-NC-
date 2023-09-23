@@ -27,4 +27,13 @@ public class DataBaseManager : MonoBehaviour
 
         }
     }
+
+    public Dialogue[] GetDialogues(int pID) 
+    {
+        List<Dialogue> dialogueList = new List<Dialogue>();
+        
+        dialogueList.Add(dialogueDic[pID]);
+        
+        return dialogueList.ToArray();
+    }
 }
