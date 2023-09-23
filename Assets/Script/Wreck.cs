@@ -26,7 +26,7 @@ public class Wreck : MonoBehaviour
         
         if (GetComponent<Event>() != null)
         {
-            GetComponent<Event>().StartEvent();
+            //GetComponent<Event>().StartEvent();
             //Debug.Log("YesEvent");
         }
         else
@@ -45,14 +45,12 @@ public class Wreck : MonoBehaviour
     {
         TelescopeImage.sprite = sprite;
         SettingUI(true);
-        Debug.Log("true");
     }
 
     public void NoUseTelesocpe()
     {
         TelescopeImage.sprite = null;
         SettingUI(false);
-        Debug.Log("false");
     }
 
     void SettingUI(bool pFlag)
