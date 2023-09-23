@@ -23,19 +23,25 @@ public class GameBase : MonoBehaviour
     {
         if (_isWreckColliderOn)
         {
-            Debug.Log("_isWreckColliderOn = " + _isWreckColliderOn);
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _wreck.UseTelescope();
-                _UseTelescope = true;
-            }
-
             if (_UseTelescope)
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     _wreck.NoUseTelesocpe();
+                    _UseTelescope = false;
+                    _bShipMove = true;
                 }
+                else if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Debug.Log("Shoooot~~!");
+                }
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Space) && _UseTelescope != true)
+            {
+                _wreck.UseTelescope();
+                _UseTelescope = true;
+                _bShipMove = false;
             }
         }
     }

@@ -63,7 +63,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.56666666
-        value: {x: 0, y: -0.5, z: 0}
+        value: {x: 0, y: -0.7, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -291,7 +291,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.56666666
-        value: -0.5
+        value: -0.7
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -375,4 +375,11 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1
+    functionName: StopPaddle
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 18ee230cb613a48059b94f86c163165e, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
