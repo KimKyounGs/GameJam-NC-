@@ -15,6 +15,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] GameObject dialogueBox;
     [SerializeField] Text textDialogue;
     [SerializeField] Text textName;
+    [SerializeField] Image characterImg;
 
     int lineCount = 0; // 대화 카운트.
     int contextCount = 0; // 대사 카운트.
@@ -84,7 +85,6 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeContext()
     {
-
         // 대화가 t_ReplaceText에 한줄한줄씩 들어옴.
         string ReplaceText = null;
         if (dialogues != null)
@@ -107,6 +107,13 @@ public class DialogueManager : MonoBehaviour
                 // Debug.Log(questId);
             }
             */
+
+            if (dialogues[lineCount]._sprite != "")
+            {
+                Debug.Log(dialogues[lineCount]._sprite);
+                characterImg.sprite = Resources.Load<Sprite>("Character/"+dialogues[lineCount]._sprite);
+                Debug.Log( Resources.Load<Sprite>("Character/"+dialogues[lineCount]._sprite));
+            }
             SettingUI(true);
             /*
             bool t_white = false, t_red = false;
@@ -142,6 +149,7 @@ public class DialogueManager : MonoBehaviour
 
     void SettingUI(bool pFlag)
     {
+        Debug.Log("pFlag : " + pFlag);
         dialogueBox.SetActive(pFlag);
     
         if (pFlag)

@@ -9,9 +9,8 @@ public class Wreck : MonoBehaviour
     [SerializeField] Image TelescopeImage;
     [SerializeField] Sprite sprite;
     [SerializeField] GameObject announcementBox;
-    [SerializeField] Text announcement;
-
-    string text = "아무것도 없었습니다";
+    [SerializeField] Text targetText;
+    [SerializeField] private float fadeDuration = 2.0f; // 2초 동안 투명도 조절
     void Start()
     {
         
@@ -65,23 +64,39 @@ public class Wreck : MonoBehaviour
     public void NoEvent()
     {
         NoUseTelesocpe();
-        StartCoroutine(TypeContext());
+        StartCoroutine(FadeTextCoroutine());
     }
 
-    IEnumerator TypeContext()
+    IEnumerator FadeTextCoroutine()
     {
-        announcementBox.SetActive(true);
-        float textDelay = 0.5f;
-        for (int i = 0; i < text.Length; i++)
-        {
-            Debug.Log(i);
-            string tLetter = text[i].ToString();
-            announcement.text += tLetter;
+        // 나타나게 하기
+        yield return Fade(0, 1);
 
-            yield return new WaitForSeconds(textDelay);
+        // 잠시 대기
+        yield return new WaitForSeconds(1.0f);
+
+        // 사라지게 하기
+        yield return Fade(1, 0);
+    }
+
+    IEnumerator Fade(float startAlpha, float endAlpha)
+    {
+        Color startColor = new Color(targetText.color.r, targetText.color.g, targetText.color.b, startAlpha);
+        Color endColor = new Color(targetText.color.r, targetText.color.g, targetText.color.b, endAlpha);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / fadeDuration;
+
+            targetText.color = Color.Lerp(startColor, endColor, t);
+
+            yield return null;
         }
-        announcementBox.SetActive(false);
-        GameBase._bShipMove = true;
-    } 
+
+        targetText.color = endColor;
+    }
     
 }

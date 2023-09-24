@@ -33,7 +33,7 @@ public class GameBase : MonoBehaviour
                     _UseTelescope = false;
                     _bShipMove = true;
                 }
-                else if (Input.GetKeyDown(KeyCode.Space))
+                else if (Input.GetKeyDown(KeyCode.R))
                 {
                     if (_event != null)
                     {
@@ -43,11 +43,12 @@ public class GameBase : MonoBehaviour
                     else
                     {
                         _wreck.NoEvent();
+                        _bShipMove = true;
                     }
                 }
             }
             
-            if (Input.GetKeyDown(KeyCode.Space) && _UseTelescope != true)
+            if (Input.GetKeyDown(KeyCode.R) && _UseTelescope != true)
             {
                 _wreck.UseTelescope();
                 _UseTelescope = true;
