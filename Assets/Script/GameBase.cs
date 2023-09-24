@@ -14,6 +14,8 @@ public class GameBase : MonoBehaviour
 
     public static Wreck _wreck = null;
 
+    public static Event _event = null;
+
     void Start()
     {
         instance = this;
@@ -34,6 +36,14 @@ public class GameBase : MonoBehaviour
                 else if (Input.GetKeyDown(KeyCode.Space))
                 {
                     Debug.Log("Shoooot~~!");
+                    if (_event != null)
+                    {
+                        _event.StartEvent();
+                    }
+                    else
+                    {
+                        
+                    }
                 }
             }
             

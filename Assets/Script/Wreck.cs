@@ -8,6 +8,8 @@ public class Wreck : MonoBehaviour
     [SerializeField] GameObject Telescope;
     [SerializeField] Image TelescopeImage;
     [SerializeField] Sprite sprite;
+    [SerializeField] GameObject announcementBox;
+    [SerializeField] Text announcement;
 
     void Start()
     {
@@ -26,6 +28,7 @@ public class Wreck : MonoBehaviour
         
         if (GetComponent<Event>() != null)
         {
+            GameBase._event = GetComponent<Event>();
             //GetComponent<Event>().StartEvent();
             //Debug.Log("YesEvent");
         }
@@ -57,4 +60,26 @@ public class Wreck : MonoBehaviour
     {
         Telescope.SetActive(pFlag);
     }
+
+    void NoEvent()
+    {
+        StartCoroutine(TypeContext());
+    }
+
+    IEnumerator TypeContext()
+    {
+        announcementBox.SetActive(true);
+        float textDelay = 0.5f;
+        string text = "아무것도 없었습니다...";
+        for (int i = 0; i < text.Length; i++)
+        {
+            string tLetter = text[i].ToString();
+            announcement.text += tLetter;
+
+            if (i == text.Length-3) textDelay = 0.05f;
+            yield return new WaitForSeconds(textDelay);
+        }
+        announcementBox.SetActive(false);
+    } 
+    
 }

@@ -30,7 +30,7 @@ public class Timer : MonoBehaviour
     {
         int minutes = (int)(remainingTime / 60);
         int seconds = (int)(remainingTime % 60);
-        int microseconds = (int)((remainingTime * 10) % 10);
+        int microseconds = (int)((remainingTime * 100) % 100);
 
         _Minutes.text = minutes.ToString();
         _seconds.text = seconds.ToString();

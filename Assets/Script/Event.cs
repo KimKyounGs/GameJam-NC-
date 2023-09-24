@@ -15,11 +15,6 @@ public class Event : MonoBehaviour
         instance = this;
     }
 
-    void Update()
-    {
-        
-    }
-
     public void StartEvent()
     {
         Dialogue[] dialogues = DataBaseManager.instance.GetDialogues(NPCID);
@@ -29,4 +24,5 @@ public class Event : MonoBehaviour
         Destroy(gameObject);
     }
 
+    
 }
