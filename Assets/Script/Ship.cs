@@ -6,10 +6,9 @@ public class Ship : MonoBehaviour
 {
     public static Ship instance;
 
-private float _shipSpeed = 0.5f;
+    private float _shipSpeed = 0.5f;
 
-    private float _nowRotation = 90;
-
+    private int _direction = 0;
     Rigidbody2D rid2D;
 
     Animator animator;
@@ -33,32 +32,42 @@ private float _shipSpeed = 0.5f;
     {
         if (Input.GetKeyDown(KeyCode.UpArrow)) 
         {
-            //rid2D.AddForce(new Vector2(0, _shipSpeed), ForceMode2D.Force);
-            //rid2D.AddForce(new Vector2(0, _shipSpeed), ForceMode2D.Impulse);
             transform.position = new Vector3(transform.position.x, transform.position.y + _shipSpeed, transform.position.z);
+            if (_direction != 0)
+            {
+                transform.eulerAngles = new Vector3(0,0,0);
+                _direction = 0;
+            }
             Paddle.instance.MovePaddle();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            //rid2D.AddForce(new Vector2(-_shipSpeed,0), ForceMode2D.Force);
-            //rid2D.AddForce(new Vector2(-_shipSpeed,0), ForceMode2D.Impulse);
             transform.position = new Vector3(transform.position.x - _shipSpeed, transform.position.y, transform.position.z);
-            transform.eulerAngles = new Vector3(0,0,_nowRotation);
+            if (_direction != 1)
+            {
+                transform.eulerAngles = new Vector3(0,0,90);
+                _direction = 1;
+            }
             Paddle.instance.MovePaddle();
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            //rid2D.AddForce(new Vector2(0, -_shipSpeed), ForceMode2D.Force);
-            //rid2D.AddForce(new Vector2(0, -_shipSpeed), ForceMode2D.Impulse);
             transform.position = new Vector3(transform.position.x, transform.position.y - _shipSpeed, transform.position.z);
+            if (_direction != 2)
+            {
+                transform.eulerAngles = new Vector3(0,0,180);
+                _direction = 2;
+            }
             Paddle.instance.MovePaddle();
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            //rid2D.AddForce(new Vector2(_shipSpeed,0), ForceMode2D.Force);
-            //rid2D.AddForce(new Vector2(_shipSpeed,0), ForceMode2D.Impulse);
             transform.position = new Vector3(transform.position.x + _shipSpeed, transform.position.y, transform.position.z);
-            transform.eulerAngles = new Vector3(0,0,-_nowRotation);
+            if (_direction != 3)
+            {
+                transform.eulerAngles = new Vector3(0,0,-90);
+                _direction = 3;
+            }
             Paddle.instance.MovePaddle();
         }
     }

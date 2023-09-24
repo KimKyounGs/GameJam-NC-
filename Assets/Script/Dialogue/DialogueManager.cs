@@ -135,9 +135,9 @@ public class DialogueManager : MonoBehaviour
                 t_ignore = false;
                 */
                 yield return new WaitForSeconds(textDelay);
-                }
-            } 
-        }
+            }
+        } 
+    }
     
 
     void SettingUI(bool pFlag)
