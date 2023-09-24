@@ -35,14 +35,14 @@ public class GameBase : MonoBehaviour
                 }
                 else if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Debug.Log("Shoooot~~!");
                     if (_event != null)
                     {
+                        _wreck.NoUseTelesocpe();
                         _event.StartEvent();
                     }
                     else
                     {
-                        
+                        _wreck.NoEvent();
                     }
                 }
             }
