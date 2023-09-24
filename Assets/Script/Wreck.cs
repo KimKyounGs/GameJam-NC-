@@ -11,6 +11,7 @@ public class Wreck : MonoBehaviour
     [SerializeField] GameObject announcementBox;
     [SerializeField] Text announcement;
 
+    string text = "아무것도 없었습니다";
     void Start()
     {
         
@@ -61,8 +62,9 @@ public class Wreck : MonoBehaviour
         Telescope.SetActive(pFlag);
     }
 
-    void NoEvent()
+    public void NoEvent()
     {
+        NoUseTelesocpe();
         StartCoroutine(TypeContext());
     }
 
@@ -70,16 +72,16 @@ public class Wreck : MonoBehaviour
     {
         announcementBox.SetActive(true);
         float textDelay = 0.5f;
-        string text = "아무것도 없었습니다...";
         for (int i = 0; i < text.Length; i++)
         {
+            Debug.Log(i);
             string tLetter = text[i].ToString();
             announcement.text += tLetter;
 
-            if (i == text.Length-3) textDelay = 0.05f;
             yield return new WaitForSeconds(textDelay);
         }
         announcementBox.SetActive(false);
+        GameBase._bShipMove = true;
     } 
     
 }

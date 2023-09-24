@@ -17,6 +17,7 @@ public class Event : MonoBehaviour
 
     public void StartEvent()
     {
+        Debug.Log("start dialogue");
         Dialogue[] dialogues = DataBaseManager.instance.GetDialogues(NPCID);
         DialogueManager.instance.ShowDialogue(dialogues);
         Pear.instance.BeLifesaving();
@@ -24,5 +25,5 @@ public class Event : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+
 }
