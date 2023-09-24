@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    private const float TOTAL_TIME = 10 * 60; // 10분을 초로 변환
+    private const float TOTAL_TIME = 5 * 60; // 10분을 초로 변환
     private float remainingTime = TOTAL_TIME;
 
     [SerializeField] Text _Minutes; // 유니티 인스펙터에서 Text 오브젝트를 연결하세요.
