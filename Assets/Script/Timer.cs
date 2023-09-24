@@ -11,18 +11,34 @@ public class Timer : MonoBehaviour
     [SerializeField] Text _Minutes; // 유니티 인스펙터에서 Text 오브젝트를 연결하세요.
     [SerializeField] Text _seconds;
     [SerializeField] Text _microseconds;
+
+    [SerializeField] GameObject GameOver;
+    [SerializeField] GameObject GameClear;
     void Update()
     {
         if (remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
             UpdateTimerText();
+
+            if (Pear._pearCnt == 30)
+            {
+                Succes();
+            }
         }
         else
         {
             _Minutes.text = 0.ToString();
             _seconds.text = 0.ToString();
             _microseconds.text = 0.ToString();
+            if (Pear._pearCnt == 30)
+            {
+                Succes();
+            }
+            else
+            {
+                Failur();
+            }
         }
     }
 
@@ -35,5 +51,16 @@ public class Timer : MonoBehaviour
         _Minutes.text = minutes.ToString();
         _seconds.text = seconds.ToString();
         _microseconds.text = microseconds.ToString();
+    }
+
+    void Succes()
+    {
+        Time.timeScale = 0f;
+        GameClear.SetActive(true);
+    }
+    void Failur()
+    {
+        Time.timeScale = 0f;
+        GameOver.SetActive(true);
     }
 }

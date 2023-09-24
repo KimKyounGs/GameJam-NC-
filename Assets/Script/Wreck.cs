@@ -65,6 +65,7 @@ public class Wreck : MonoBehaviour
     {
         NoUseTelesocpe();
         StartCoroutine(FadeTextCoroutine());
+        Destroy(gameObject);
     }
 
     IEnumerator FadeTextCoroutine()
