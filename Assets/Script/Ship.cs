@@ -6,7 +6,7 @@ public class Ship : MonoBehaviour
 {
     public static Ship instance;
 
-    private float _shipSpeed = 1f;
+    private float _shipSpeed = 3f;
 
     // private int _direction = 0;
     Rigidbody2D rid2D;

@@ -77,6 +77,8 @@ public class Wreck : MonoBehaviour
 
         // 사라지게 하기
         yield return Fade(1, 0);
+
+        GoDestroy();
     }
 
     IEnumerator Fade(float startAlpha, float endAlpha)
@@ -97,6 +99,11 @@ public class Wreck : MonoBehaviour
         }
 
         targetText.color = endColor;
+    }
+
+    void GoDestroy()
+    {
+        Destroy(gameObject);
     }
     
 }
